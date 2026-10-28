@@ -1,5 +1,5 @@
 -- PayFlex Fintech Platform - Advanced Database Portfolio
--- Student: [PUT YOUR NAME AND MATRIC NO]
+-- Student: [Ifeoluwa Daniel | ID: 301856443]
 -- Case Study: Consistent for all 5 portfolios
 
 CREATE DATABASE IF NOT EXISTS payflex_db;
