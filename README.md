@@ -1,1 +1,17 @@
-# Ifeoluwa_Daniel_301856443
+# Ifeoluwa_Daniel_301856443 - MIT 8103 Advanced Database Portfolio
+
+**Student:** Ifeoluwa Daniel | ID: 301856443
+**Case Study:** PayFlex Microfinance - Digital Banking Platform (Simulated) - Consistent for all 5 portfolios.
+
+**Business Overview:** Fintech wallet and agency banking. Users: Customers, Support Agents, Auditors, Admins. Data: Customers, Accounts, Transactions, Bills, SupportTickets, AuditLogs. Operations: Account creation, fund transfer, reversal of failed transactions, audit logging, support escalation.
+
+**Repo Structure:**
+- portfolio-1-database-design/ - ER diagram, schema.sql with PK/FK/CHECK/UNIQUE, 3NF normalization
+- portfolio-2-query-optimisation/ - Pending
+- portfolio-3-transactions-concurrency/ - Pending
+- portfolio-4-nosql/ - Pending
+- portfolio-5-distributed-cloud/ - Pending
+
+**GitHub:** https://github.com/Daniellfeoluwa/Ifeoluwa_Daniel_301856443 - Private, assessor access granted on request.
+
+**Portfolio 1 Status:** Completed. Schema with 6 tables, constraints, sample data.
