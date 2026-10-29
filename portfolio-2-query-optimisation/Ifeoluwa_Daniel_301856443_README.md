@@ -1,1 +1,1 @@
-Portfolio 2 pending - queries with execution plans
+- Portfolio 2: Completed. 6 optimised queries with JOIN, GROUP BY, Subquery, INDEX. EXPLAIN used to show performance. File: portfolio-2-query-optimisation/Ifeoluwa_Daniel_301856443_Queries.sql
