@@ -54,3 +54,52 @@ WHERE t.transaction_id IN (
     SELECT transaction_id FROM Transactions WHERE status = 'FAILED'
 )
 ORDER BY t.trans_date DESC;
+
+-- 4. QUERY 3: Failed Transactions for Audit - Subquery
+SELECT 
+    c.full_name, c.email, a.account_no, t.reference_no, t.amount, t.trans_date
+FROM Customers c
+JOIN Accounts a ON c.customer_id = a.customer_id
+JOIN Transactions t ON a.account_id = t.from_account_id
+WHERE t.transaction_id IN (
+    SELECT transaction_id FROM Transactions WHERE status = 'FAILED'
+)
+ORDER BY t.trans_date DESC;
+
+-- 5. QUERY 4: Top 5 Customers by Transaction Volume - JOIN + GROUP BY + LIMIT
+SELECT 
+    c.customer_id, c.full_name, c.bvn,
+    COUNT(t.transaction_id) AS transaction_count,
+    SUM(t.amount) AS total_volume
+FROM Customers c
+JOIN Accounts a ON c.customer_id = a.customer_id
+JOIN Transactions t ON a.account_id = t.from_account_id
+WHERE t.status = 'SUCCESS'
+GROUP BY c.customer_id, c.full_name, c.bvn
+ORDER BY total_volume DESC
+LIMIT 5;
+
+-- 6. QUERY 5: Account Balance Check with HAVING
+SELECT 
+    a.account_id, a.account_no, a.balance, c.full_name,
+    SUM(CASE WHEN t.status = 'SUCCESS' THEN t.amount ELSE 0 END) AS total_successful_trans
+FROM Accounts a
+JOIN Customers c ON a.customer_id = c.customer_id
+LEFT JOIN Transactions t ON a.account_id = t.from_account_id
+GROUP BY a.account_id, a.account_no, a.balance, c.full_name
+HAVING a.balance >= 0
+ORDER BY a.balance DESC;
+
+-- 7. QUERY 6: Bill Payment Analysis - Complex JOIN
+SELECT 
+    b.bill_type, COUNT(b.bill_id) AS total_bills,
+    SUM(b.amount) AS total_bill_amount,
+    AVG(b.amount) AS avg_bill,
+    COUNT(CASE WHEN b.status = 'PAID' THEN 1 END) AS paid_count,
+    COUNT(CASE WHEN b.status = 'PENDING' THEN 1 END) AS pending_count
+FROM Bills b
+GROUP BY b.bill_type;
+
+-- 8. PERFORMANCE COMPARISON - Before and After Index
+-- Run EXPLAIN before and after indexes to show optimisation
+EXPLAIN SELECT * FROM Transactions WHERE from_account_id = 100 AND status = 'SUCCESS';
