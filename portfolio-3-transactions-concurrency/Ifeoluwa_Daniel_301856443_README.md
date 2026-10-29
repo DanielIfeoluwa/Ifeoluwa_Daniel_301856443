@@ -1,1 +1,1 @@
-Portfolio 3 pending - queries with execution plans
+Portfolio 3 Completed - queries with execution plans
