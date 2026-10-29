@@ -107,3 +107,59 @@ END //
 DELIMITER ;
 
 -- How to call: CALL sp_transfer_funds(1, 2, 1000.00, 'REF123456');
+
+-- ============================================
+-- 4. TRIGGER: Auto Audit Log on Account Update
+-- ============================================
+DELIMITER //
+
+CREATE TRIGGER trg_accounts_audit
+AFTER UPDATE ON Accounts
+FOR EACH ROW
+BEGIN
+    INSERT INTO AuditLogs (user_id, action, table_name, record_id, old_value, new_value, created_at)
+    VALUES (1, 'UPDATE_BALANCE', 'Accounts', NEW.account_id, OLD.balance, NEW.balance, NOW());
+END //
+
+DELIMITER ;
+
+-- ============================================
+-- 5. TRIGGER: Prevent Negative Balance
+-- ============================================
+DELIMITER //
+
+CREATE TRIGGER trg_prevent_negative_balance
+BEFORE UPDATE ON Accounts
+FOR EACH ROW
+BEGIN
+    IF NEW.balance < 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Balance cannot be negative';
+    END IF;
+END //
+
+DELIMITER ;
+
+-- ============================================
+-- 6. CONCURRENCY DEMO: Isolation Level
+-- ============================================
+-- Show Dirty Read, Non-Repeatable Read protection
+
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+-- Or: SET TRANSACTION ISOLATION LEVEL REPEATABLE READ; -- MySQL default
+
+-- Transaction A
+START TRANSACTION;
+SELECT * FROM Accounts WHERE account_id = 1;
+-- Transaction B tries to update same account - will wait due to FOR UPDATE lock
+-- This demonstrates row-level locking
+
+-- ============================================
+-- 7. DEADLOCK HANDLING EXAMPLE
+-- ============================================
+-- Transaction 1 locks Account 1 then tries Account 2
+-- Transaction 2 locks Account 2 then tries Account 1
+-- MySQL automatically detects deadlock and rolls back one
+-- Application should retry
+
+-- Example retry logic (in application):
+-- Retry 3 times on deadlock error 1213
