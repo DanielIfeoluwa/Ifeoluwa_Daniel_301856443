@@ -7,10 +7,10 @@
 
 **Repo Structure:**
 - portfolio-1-database-design/ - ER diagram, schema.sql with PK/FK/CHECK/UNIQUE, 3NF normalization
-- portfolio-2-query-optimisation/ - Pending
-- portfolio-3-transactions-concurrency/ - Pending
-- portfolio-4-nosql/ - Pending
-- portfolio-5-distributed-cloud/ - Pending
+- portfolio-2-query-optimisation/ - Completed
+- portfolio-3-transactions-concurrency/ - Completed
+- portfolio-4-nosql/ - Completed
+- portfolio-5-distributed-cloud/ - Completed
 
 **GitHub:** https://github.com/Daniellfeoluwa/Ifeoluwa_Daniel_301856443 - Private, assessor access granted on request.
 
