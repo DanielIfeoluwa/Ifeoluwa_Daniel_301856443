@@ -12,6 +12,6 @@
 - portfolio-4-nosql/ - Completed
 - portfolio-5-distributed-cloud/ - Completed
 
-**GitHub:** https://github.com/Daniellfeoluwa/Ifeoluwa_Daniel_301856443 - Private, assessor access granted on request.
+**GitHub:** https://github.com/DanielIfeoluwa/Ifeoluwa_Daniel_301856443 
 
-**Portfolio 1 Status:** Completed. Schema with 6 tables, constraints, sample data.
+**Portfolio 1-5 Status:** Completed. 
